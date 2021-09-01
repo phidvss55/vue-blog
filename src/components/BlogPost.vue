@@ -18,19 +18,19 @@
           View The Post <Arrow class="arrow" />
         </router-link>
       </div>
-      <div class="blog-photo">
-        <img
-          v-if="post.welcomeScreen"
-          :src="require(`../assets/blogPhotos/${post.photo}.jpg`)"
-          alt=""
-        />
+    </div>
+    <div class="blog-photo">
+      <img
+        v-if="post.welcomeScreen"
+        :src="require(`../assets/blogPhotos/${post.photo}.jpg`)"
+        alt=""
+      />
 
-        <img
-          v-else
-          :src="require(`../assets/blogPhotos/${post.blogCoverPhoto}.jpg`)"
-          alt=""
-        />
-      </div>
+      <img
+        v-else
+        :src="require(`../assets/blogPhotos/${post.blogCoverPhoto}.jpg`)"
+        alt=""
+      />
     </div>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div class="app-wrapper">
     <div class="app">
-      <navigation />
+      <navigation v-if="!navigation" />
       <router-view />
       <Footer />
     </div>
@@ -17,6 +17,31 @@ export default {
   components: {
     Navigation,
     Footer
+  },
+  data() {
+    return {
+      navigation: null
+    };
+  },
+  created() {
+    this.chekcRoute();
+    setTimeout(() => {
+      console.log(firebase.auth().currentUser);
+    }, 2000);
+  },
+  methods: {
+    chekcRoute() {
+      if (this.$route.name === 'Login' || this.$route.name === 'Register' || this.$route.name === 'ForgotPassword') {
+        this.navigation = true;
+        return;
+      }
+      this.navigation = false;
+    }
+  },
+  watch: {
+    $route() {
+      this.chekcRoute();
+    }
   }
 };
 </script>
