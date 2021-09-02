@@ -1,30 +1,20 @@
 <template>
   <div class="home">
-    <BlogPost :post="welcomeScreen" />
-    <BlogPost
-      :post="post"
-      v-for="(post, index) in sampleBlogPost"
-      :key="index"
-    />
+    <BlogPost :post="welcomeScreen" v-if="!user" />
+    <BlogPost :post="post" v-for="(post, index) in sampleBlogPost" :key="index" />
 
     <div class="blog-card-wrap">
       <div class="container">
         <h3>View More Recent Blogs</h3>
         <div class="blog-cards">
-          <BlogCard
-            v-for="(post, index) in sampleBlogCards"
-            :key="index"
-            :post="post"
-          />
+          <BlogCard v-for="(post, index) in sampleBlogCards" :key="index" :post="post" />
         </div>
       </div>
     </div>
-    <div class="updates">
+    <div class="updates" v-if="!user">
       <div class="container">
         <h2>Never miss a post? Register for your free account today!</h2>
-        <router-link class="router-button" to="#">
-          Register for Fireblog <Arrow class="arrow arrow-light" />
-        </router-link>
+        <router-link class="router-button" to="#"> Register for Fireblog <Arrow class="arrow arrow-light" /> </router-link>
       </div>
     </div>
   </div>
@@ -46,8 +36,7 @@ export default {
     return {
       welcomeScreen: {
         title: 'Welcome!',
-        blogPost:
-          'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum, corporis. Animi ea aut veritatis voluptate praesentium excepturi labore, mollitia enim numquam doloribus minus maxime modi totam ipsum doloremque iste, impedit ut vitae sunt? Dolorem quidem, blanditiis quae modi doloremque iure!',
+        blogPost: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum, corporis. Animi ea aut veritatis voluptate praesentium excepturi labore, mollitia enim numquam doloribus minus maxime modi totam ipsum doloremque iste, impedit ut vitae sunt? Dolorem quidem, blanditiis quae modi doloremque iure!',
         welcomeScreen: true,
         photo: 'coding'
       },
@@ -68,6 +57,9 @@ export default {
   computed: {
     sampleBlogCards() {
       return this.$store.state.sampleBlogCards;
+    },
+    user() {
+      return this.$store.state.user;
     }
   }
 };

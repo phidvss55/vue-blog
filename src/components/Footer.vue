@@ -24,8 +24,10 @@
             <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
             <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
             <router-link v-if="admin" class="link" :to="{ name: 'CreatePost' }">Create Post</router-link>
-            <router-link v-if="!user" class="link" :to="{ name: 'Login' }">Login In</router-link>
-            <router-link v-if="!user" class="link" :to="{ name: 'Register' }">Register</router-link>
+            <template v-if="!user">
+              <router-link class="link" :to="{ name: 'Login' }">Login In</router-link>
+              <router-link class="link" :to="{ name: 'Register' }">Register</router-link>
+            </template>
           </ul>
         </div>
       </div>
@@ -52,12 +54,10 @@ export default {
   },
   computed: {
     user() {
-      return true;
-      // return this.$store.user;
+      return this.$store.state.user;
     },
     admin() {
-      return 1;
-      // return this.$store.profileAdmin;
+      return this.$store.state.profileAdmin;
     }
   }
 };
