@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     async updateBlog() {
-      const database = await db.collection('blogPosts').doc(tis.routeID);
+      const database = await db.collection('blogPosts').doc(this.routeID);
       if (this.blogTitle.length !== 0 && this.blogHTML.length !== 0) {
         if (this.file) {
           this.loading = true;
