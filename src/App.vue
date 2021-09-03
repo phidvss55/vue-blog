@@ -1,6 +1,6 @@
 <template>
   <div class="app-wrapper">
-    <div class="app">
+    <div class="app" v-if="this.$store.state.postLoaded">
       <navigation v-if="!navigation" />
       <router-view />
       <Footer />
@@ -36,7 +36,7 @@ export default {
     this.$store.dispatch('getPost');
   },
   methods: {
-    chekcRoute() {
+    checkRoute() {
       if (this.$route.name === 'Login' || this.$route.name === 'Register' || this.$route.name === 'ForgotPassword') {
         this.navigation = true;
         return;
@@ -46,7 +46,7 @@ export default {
   },
   watch: {
     $route() {
-      this.chekcRoute();
+      this.checkRoute();
     }
   }
 };
